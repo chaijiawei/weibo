@@ -9,9 +9,6 @@
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
-
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
@@ -58,6 +55,9 @@
                                     <a class="dropdown-item" href="{{ route('users.show', Auth::user()) }}">
                                         个人中心
                                     </a>
+                                    <a class="dropdown-item" href="{{ route('users.edit', Auth::user()) }}">
+                                        修改资料
+                                    </a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
@@ -76,8 +76,19 @@
         </nav>
 
         <main class="py-4">
+            <div class="container">
+                @include('flash::message')
+            </div>
             @yield('content')
         </main>
     </div>
+
+    <!-- Scripts -->
+    <script src="{{ asset('js/app.js') }}"></script>
+    <script>
+        $(function() {
+            $('div.alert').not('.alert-important').delay(3000).fadeOut(350);
+        });
+    </script>
 </body>
 </html>

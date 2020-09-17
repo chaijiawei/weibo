@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', '用户列表')
+
 @section('content')
     <div class="container">
         <div class="row justify-content-center">
@@ -16,6 +18,10 @@
                             <small class="ml-3">{{ $user->email }}</small>
                         </div>
                     @endforeach
+                </div>
+
+                <div class="my-4">
+                    {{ $users->links() }}
                 </div>
             </div>
         </div>

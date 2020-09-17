@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>weibo-@yield('title', '主页')</title>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -30,7 +30,9 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
-
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('users.index') }}">用户列表</a>
+                        </li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -87,7 +89,7 @@
     <script src="{{ asset('js/app.js') }}"></script>
     <script>
         $(function() {
-            $('div.alert').not('.alert-important').delay(3000).fadeOut(350);
+            $('div.global-flash-div').not('.alert-important').delay(3000).fadeOut(350);
         });
     </script>
 </body>

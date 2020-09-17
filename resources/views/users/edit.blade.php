@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', '修改个人资料')
+
 @section('content')
     <div class="container">
         <div class="row justify-content-center">
@@ -14,6 +16,8 @@
                         <form action="{{ route('users.update', $user) }}" method="post">
                             @csrf
                             @method('patch')
+
+                            @include('common._errors')
 
                             <div class="form-group">
                                 <label for="name">用户名</label>

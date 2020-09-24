@@ -18,3 +18,5 @@ Route::get('/', 'HomeController@index')->name('home');
 Auth::routes();
 
 Route::resource('users', 'UsersController');
+
+Route::resource('microBlogs', 'MicroBlogsController');

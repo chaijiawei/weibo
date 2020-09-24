@@ -15,7 +15,8 @@ class UsersController extends Controller
 
     public function show(User $user)
     {
-        return view('users.show', compact('user'));
+        $microBlogs = $user->microBlogs()->latest()->paginate();
+        return view('users.show', compact('user', 'microBlogs'));
     }
 
     public function edit(User $user)

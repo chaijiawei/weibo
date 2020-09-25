@@ -10,7 +10,7 @@ class UsersController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth')->except(['show']);
+        $this->middleware('auth')->except(['show', 'index']);
     }
 
     public function show(User $user)
@@ -40,5 +40,21 @@ class UsersController extends Controller
         $users = User::query()->paginate();
 
         return view('users.index', compact('users'));
+    }
+
+    public function followers(User $user)
+    {
+        $users = $user->followers()->latest()->paginate();
+        $title = "{$user->name}的粉丝";
+
+        return view('users.follow', compact('users', 'title'));
+    }
+
+    public function followings(User $user)
+    {
+        $users = $user->followings()->latest()->paginate();
+        $title = "{$user->name}关注的人";
+
+        return view('users.follow', compact('users', 'title'));
     }
 }

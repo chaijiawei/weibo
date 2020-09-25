@@ -27,7 +27,7 @@ class HomeController extends Controller
     {
         $microBlogs = [];
         if(Auth::check()) {
-            $microBlogs = Auth::user()->microBlogs()->latest()->paginate();
+            $microBlogs = Auth::user()->feed();
         }
         return view('home', compact('microBlogs'));
     }

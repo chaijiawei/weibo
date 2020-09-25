@@ -10,6 +10,13 @@
                     <h1>{{ $user->name }}</h1>
                     <p>{{ $user->email }}</p>
                 </div>
+
+                @can('follow', $user)
+                    <div class="text-center my-4">
+                        @include('users._follow_form')
+                    </div>
+                @endcan
+
                 <hr>
                 @include('microBlogs._list')
             </div>

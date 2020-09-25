@@ -20,7 +20,11 @@
                     @include('microBlogs._list')
                 </div>
                 <div class="col-md-4">
-
+                    <div class="text-center mb-4">
+                        <h3>{{ Auth::user()->name }}</h3>
+                        <p>{{ Auth::user()->email }}</p>
+                    </div>
+                    @include('users._status', ['user' => Auth::user()])
                 </div>
             </div>
         @else

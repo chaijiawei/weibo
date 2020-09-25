@@ -20,3 +20,8 @@ Auth::routes();
 Route::resource('users', 'UsersController');
 
 Route::resource('microBlogs', 'MicroBlogsController');
+
+Route::get('users/{user}/followers', 'UsersController@followers')->name('users.followers');
+Route::get('users/{user}/followings', 'UsersController@followings')->name('users.followings');
+
+Route::resource('followers', 'FollowersController')->only(['store', 'destroy']);

@@ -10,14 +10,14 @@
 <body>
   <nav class="navbar navbar-expand-lg bg-body-tertiary">
     <div class="container-fluid">
-      <a class="navbar-brand" href="#">微博</a>
+      <a class="navbar-brand" href="{{ route('home') }}">微博</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link" href="#">首页</a>
+            <a class="nav-link" href="{{ route('home') }}">首页</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#">列表</a>
@@ -29,7 +29,7 @@
             <a class="nav-link" href="#">登录</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">注册</a>
+            <a class="nav-link" href="{{ route('users.create') }}">注册</a>
           </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -48,6 +48,8 @@
   </nav>
 
   <div class="container my-4">
+    @include('layouts.message')
+
     @yield('content')
   </div>
 

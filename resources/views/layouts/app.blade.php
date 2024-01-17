@@ -26,7 +26,7 @@
 
         <ul class="navbar-nav mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link" href="#">登录</a>
+            <a class="nav-link" href="{{ route('users.login') }}">登录</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="{{ route('users.create') }}">注册</a>

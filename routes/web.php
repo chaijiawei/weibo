@@ -16,4 +16,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
-Route::resource('users', UserController::class);
+
+Route::get('/users/login', [UserController::class, 'login'])->name('users.login');
+Route::post('/users/login', [UserController::class, 'storeLogin'])->name('users.storeLogin');
+Route::resource('/users', UserController::class);

@@ -9,11 +9,11 @@
 
     <div class="mb-3">
       <label for="name" class="form-label">用户名</label>
-      <input type="text" id="name" name="name" class="form-control">
+      <input value="{{ old('name') }}" type="text" id="name" name="name" class="form-control">
     </div>
     <div class="mb-3">
       <label for="email" class="form-label">邮箱</label>
-      <input type="text" id="email" name="email" class="form-control">
+      <input value="{{ old('email') }}" type="text" id="email" name="email" class="form-control">
     </div>
     <div class="mb-3">
       <label for="password" class="form-label">密码</label>

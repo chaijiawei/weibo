@@ -55,7 +55,13 @@
                 <li><a class="dropdown-item" href="{{ route('users.show', Auth::user()) }}">个人主页</a></li>
                 <li><a class="dropdown-item" href="{{ route('users.edit', Auth::user()) }}">修改资料</a></li>
                 <li><hr class="dropdown-divider"></li>
-                <li><a class="dropdown-item" href="#">退出</a></li>
+                <li>
+                  <a class="dropdown-item" href="javascript:;" onclick="document.getElementById('logoutForm').submit()">登出</a>
+                  <form method="post" id="logoutForm" action="{{ route('users.logout') }}" class="d-none">
+                    @csrf
+                    @method('delete')
+                  </form>
+                </li>
               </ul>
             </li>
           @endauth

@@ -19,4 +19,5 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 
 Route::get('/users/login', [UserController::class, 'login'])->name('users.login');
 Route::post('/users/login', [UserController::class, 'storeLogin'])->name('users.storeLogin');
+Route::delete('/users/logout', [UserController::class, 'logout'])->name('users.logout');
 Route::resource('/users', UserController::class);

@@ -25,6 +25,14 @@ class UserController extends Controller
         return to_route('home')->with('msg', '注册成功');
     }
 
+    public function logout(Request $request) {
+        Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return to_route('home')->with('msg', '登出成功');
+    }
+
     public function login() {
         return view('user.login');
     }

@@ -43,4 +43,26 @@ class UserController extends Controller
             'email' => '账号或者密码错误'
         ])->onlyInput('email');
     }
+
+    public function show(User $user) {
+        return view('user.show', compact('user'));
+    }
+
+    public function edit(User $user) {
+        $this->authorize('update', $user);
+
+        return view('user.edit', compact('user'));
+    }
+
+    public function update(User $user, Request $request) {
+        $this->authorize('update', $user);
+
+        $data = $this->validate($request, [
+            'name' => User::$rules['name'] . '|' . Rule::unique('users')->ignore($user),
+        ]);
+
+        $user->update($data);
+
+        return to_route('users.edit', $user)->with('msg', '修改成功');
+    }
 }

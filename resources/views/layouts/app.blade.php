@@ -17,7 +17,11 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link" href="{{ route('home') }}">首页</a>
+            <a class="nav-link 
+              @if(request()->routeIs('home')) active @endif" 
+              href="{{ route('home') }}">
+              首页
+            </a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#">列表</a>
@@ -27,10 +31,18 @@
         <ul class="navbar-nav mb-2 mb-lg-0">
           @guest
             <li class="nav-item">
-              <a class="nav-link" href="{{ route('users.login') }}">登录</a>
+              <a class="nav-link 
+                @if(request()->routeIs('users.login')) active @endif" 
+                href="{{ route('users.login') }}">
+                登录
+              </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="{{ route('users.create') }}">注册</a>
+              <a class="nav-link 
+                @if(request()->routeIs('users.create')) active @endif" 
+                href="{{ route('users.create') }}">
+                注册
+              </a>
             </li>
           @endguest
 
@@ -40,8 +52,8 @@
                 {{ Auth::user()->name }}
               </a>
               <ul class="dropdown-menu dropdown-menu-end">
-                <li><a class="dropdown-item" href="#">主页</a></li>
-                <li><a class="dropdown-item" href="#">修改资料</a></li>
+                <li><a class="dropdown-item" href="{{ route('users.show', Auth::user()) }}">个人主页</a></li>
+                <li><a class="dropdown-item" href="{{ route('users.edit', Auth::user()) }}">修改资料</a></li>
                 <li><hr class="dropdown-divider"></li>
                 <li><a class="dropdown-item" href="#">退出</a></li>
               </ul>

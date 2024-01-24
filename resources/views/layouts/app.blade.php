@@ -24,7 +24,11 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">列表</a>
+            <a class="nav-link 
+              @if(request()->routeIs('micro-blogs.index')) active @endif" 
+              href="{{ route('micro-blogs.index') }}">
+              列表
+            </a>
           </li>
         </ul>
 

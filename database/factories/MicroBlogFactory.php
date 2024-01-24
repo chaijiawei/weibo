@@ -17,7 +17,7 @@ class MicroBlogFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'content' => $this->faker->sentence
         ];
     }
 }

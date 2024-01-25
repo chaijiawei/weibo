@@ -4,6 +4,7 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
@@ -51,5 +52,29 @@ class User extends Authenticatable
 
     public function microBlogs() {
         return $this->hasMany(MicroBlog::class);
+    }
+
+    public function followers() {
+        return $this->belongsToMany(User::class, 'follows', 'followee_id', 'follower_id')->withTimestamps();
+    }
+
+    public function followees() {
+        return $this->belongsToMany(User::class, 'follows', 'follower_id', 'followee_id')->withTimestamps();
+    }
+
+    public function follow($ids) {
+        return $this->followees()->syncWithoutDetaching($ids);
+    }
+
+    public function unfollow($ids) {
+        return $this->followees()->detach($ids);
+    }
+
+    public function isFollow($user) {
+        if($user instanceof Model) {
+            $user = $user->getKey();
+        }
+
+        return $this->followees()->wherePivot('followee_id', $user)->exists();
     }
 }

@@ -18,11 +18,7 @@ class MicroBlogController extends Controller
     }
 
     public function store(Request $request) {
-        $data = $this->validate($request, [
-            'content' => 'required|string|min:1|max:255'
-        ], [], [
-            'content' => '微博内容'
-        ]);
+        $data = $this->validate($request, MicroBlog::$rules, [], MicroBlog::$rulesAttributes);
 
         $request->user()->microBlogs()->create($data);
 

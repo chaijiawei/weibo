@@ -9,6 +9,11 @@ use Illuminate\Validation\Rule;
 
 class UserController extends Controller
 {
+    public function __construct()
+    {
+       $this->middleware('auth')->only(['follow', 'unfollow']);
+    }
+
     public function create() {
         return view('user.create');
     }
@@ -44,7 +49,7 @@ class UserController extends Controller
         ]);
 
         if(Auth::attempt($data)) {
-            return to_route('home')->with('msg', '登录成功');
+            return redirect()->intended(route('home'))->with('msg', '登录成功');
         }
 
         return back()->withErrors([
@@ -53,6 +58,7 @@ class UserController extends Controller
     }
 
     public function show(User $user) {
+        $user->loadCount(['microBlogs', 'followers', 'followees']);
         return view('user.show', compact('user'));
     }
 
@@ -72,5 +78,21 @@ class UserController extends Controller
         $user->update($data);
 
         return to_route('users.edit', $user)->with('msg', '修改成功');
+    }
+
+    public function follow(User $user) {
+        $this->authorize('follow', $user);
+
+        Auth::user()->follow($user);
+
+        return back();
+    }
+
+    public function unfollow(User $user) {
+        $this->authorize('follow', $user);
+
+        Auth::user()->unfollow($user);
+
+        return back();
     }
 }

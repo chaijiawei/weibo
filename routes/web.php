@@ -21,6 +21,8 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/users/login', [UserController::class, 'login'])->name('users.login');
 Route::post('/users/login', [UserController::class, 'storeLogin'])->name('users.storeLogin');
 Route::delete('/users/logout', [UserController::class, 'logout'])->name('users.logout');
+Route::post('/users/{user}/follow', [UserController::class, 'follow'])->name('users.follow');
+Route::delete('/users/{user}/unfollow', [UserController::class, 'unfollow'])->name('users.unfollow');
 Route::resource('/users', UserController::class);
 
 Route::resource('/micro-blogs', MicroBlogController::class)->parameters([

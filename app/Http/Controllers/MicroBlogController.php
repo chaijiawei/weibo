@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\MicroBlog;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class MicroBlogController extends Controller
@@ -11,6 +12,7 @@ class MicroBlogController extends Controller
     {
        $this->middleware('auth')->only('store');
     }
+
     public function index() {
         $microBlogs = MicroBlog::latest()->with('user')->paginate();
 
@@ -23,5 +25,19 @@ class MicroBlogController extends Controller
         $request->user()->microBlogs()->create($data);
 
         return back()->with(['msg' => '微博发布成功']);
+    }
+
+    public function userIndex(User $user) {
+        $microBlogs = $user->microBlogs()->latest()->with('user')->paginate();
+
+        return view('micro-blog.user_index', compact('microBlogs', 'user'));
+    }
+
+    public function destroy(MicroBlog $microBlog) {
+        $this->authorize('delete', $microBlog);
+
+        $microBlog->delete();
+
+        return back();
     }
 }

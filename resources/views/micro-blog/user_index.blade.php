@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', '微博列表')
+@section('title', "{$user->name} 的微博")
 
 @section('content')
   <ul class="list-group">

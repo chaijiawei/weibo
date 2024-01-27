@@ -25,6 +25,7 @@ Route::post('/users/{user}/follow', [UserController::class, 'follow'])->name('us
 Route::delete('/users/{user}/unfollow', [UserController::class, 'unfollow'])->name('users.unfollow');
 Route::resource('/users', UserController::class);
 
+Route::get('/micro-blogs/user/{user}', [MicroBlogController::class, 'userIndex'])->name('micro-blogs.userIndex');
 Route::resource('/micro-blogs', MicroBlogController::class)->parameters([
   'micro-blogs' => 'microBlog'
 ]);

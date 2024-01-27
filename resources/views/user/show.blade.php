@@ -22,7 +22,9 @@
   <hr>
   <div class="row">
     <span class="col">
-      微博数量：{{ $user->micro_blogs_count }}
+      <a href="{{ route('micro-blogs.userIndex', $user) }}">
+        微博数量：{{ $user->micro_blogs_count }}
+      </a>
     </span> 
     <span class="col">
       粉丝数量：{{ $user->followers_count }}

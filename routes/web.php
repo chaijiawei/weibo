@@ -23,6 +23,8 @@ Route::post('/users/login', [UserController::class, 'storeLogin'])->name('users.
 Route::delete('/users/logout', [UserController::class, 'logout'])->name('users.logout');
 Route::post('/users/{user}/follow', [UserController::class, 'follow'])->name('users.follow');
 Route::delete('/users/{user}/unfollow', [UserController::class, 'unfollow'])->name('users.unfollow');
+Route::get('/users/{user}/followers', [UserController::class, 'followers'])->name('users.followers');
+Route::get('/users/{user}/followees', [UserController::class, 'followees'])->name('users.followees');
 Route::resource('/users', UserController::class);
 
 Route::get('/micro-blogs/user/{user}', [MicroBlogController::class, 'userIndex'])->name('micro-blogs.userIndex');

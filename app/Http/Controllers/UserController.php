@@ -95,4 +95,16 @@ class UserController extends Controller
 
         return back();
     }
+
+    public function followers(User $user) {
+        $followers = $user->followers()->orderByPivot('created_at', 'desc')->paginate();
+
+        return view('user.followers', compact('followers', 'user'));
+    }
+
+    public function followees(User $user) {
+        $followees = $user->followees()->orderByPivot('created_at', 'desc')->paginate();
+
+        return view('user.followees', compact('followees', 'user'));
+    }
 }

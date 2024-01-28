@@ -27,10 +27,14 @@
       </a>
     </span> 
     <span class="col">
-      粉丝数量：{{ $user->followers_count }}
+      <a href="{{ route('users.followers', $user) }}">
+        粉丝数量：{{ $user->followers_count }}
+      </a>
     </span> 
     <span class="col">
-      关注数量：{{ $user->followees_count }}
+      <a href="{{ route('users.followees', $user) }}">
+        关注数量：{{ $user->followees_count }}
+      </a>
     </span> 
   </div>
 @endsection
